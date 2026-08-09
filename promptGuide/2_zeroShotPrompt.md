@@ -2,7 +2,7 @@
 
 Zero shot prompting tells a large-language model exactly what you want without supplying a single demonstration. The model leans on the general-purpose knowledge it absorbed during pre-training to infer the right output. You provide instructions but no examples, allowing the model to apply its existing understanding to the task.
 
-# example--
+# Prompt
 
 
 Analyze the following customer support ticket and provide a JSON output containing:
@@ -12,7 +12,7 @@ Analyze the following customer support ticket and provide a JSON output containi
 - A 'suggested_next_action' for the support team.
 
 Ticket:
-## Support Ticket ##
+- Support Ticket ##
 
 Ticket ID: TSK-2024-00123
 Customer Name: Jane Doe

@@ -11,7 +11,7 @@ This example demonstrates using CoT to systematically analyze a customer support
 Analyze the following customer support ticket. First, let's think step by step to understand the problem, and then provide a structured JSON output.
 
 Ticket:
-## Support Ticket ##
+- Support Ticket ##
 
 Ticket ID: TSK-2024-00123
 Customer Name: Jane Doe
@@ -21,10 +21,10 @@ Date Submitted: 2024-03-15 10:30 AM UTC
 Product/Service: SuperWidget Pro
 Subject: Cannot log in to my account
 
-# Issue Description:
+- Issue Description:
 I've been trying to log into my SuperWidget Pro account for the past 3 hours with no success. I keep getting an "Authentication Error (Code: 503)" message. I tried resetting my password, but I'm not receiving the reset email. I need urgent access to my project files for a client meeting this afternoon. My username is janedoe_widgets.
 
-# Why This Works
+- Why This Works
 CoT prompting works effectively for support ticket analysis because:
 
 1. It breaks down the complex task of ticket analysis into discrete, manageable steps

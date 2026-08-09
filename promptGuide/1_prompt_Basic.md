@@ -9,24 +9,24 @@ Element	What it does
 4. Input -- 	The data or question to transform
 5. Expected Output	-- Schema or miniature example to lock formatting 
 
-# example--
+# prompt
 
 
-### System
+- System
 You are a data-extraction bot. Return **ONLY** valid JSON.
 
-### Instructions
+- Instructions
 Return only JSON with keys:
 - name (string)
 - street (string)
 - city (string)
 - postcode (string)
 
-### Context
+- Context
 "Ship-to" or "Deliver to" often precedes the address.
 Postcodes may include letters (e.g., SW1A 1AA).
 
-### Input
+- Input
 Subject: Shipping Request - Order #12345
 
 Hi Shipping Team,
@@ -46,5 +46,5 @@ Items:
 Thanks,
 Sales Team
 
-### Example Output
+-  Example Output
 {"name":"John Doe","street":"456 Pine Street","city":"San Francisco","postcode":"94105"}
