@@ -1,12 +1,24 @@
- ## Tools in LLM will let yov interact with external resource.
+# Tools in LLM
 
-## work flow
-request to LLM with (tool definition) => return tool call request => tools execution and return to LLM => model evaluate result
+Tools LLM ko external resources ke sath interact karne dete hain.
 
-## tool definition
+## Workflow
 
-1. 
-// Sample request body with tool definitions and messages
+```
+Request to LLM (with tool definitions)
+        ↓
+LLM returns tool call request
+        ↓
+Tool execution → result returned to LLM
+        ↓
+Model evaluates result → final response
+```
+
+## 1. Tool Definition
+
+Sample request body with tool definitions and messages:
+
+```json
 {
   "tools": [
     {
@@ -15,7 +27,6 @@ request to LLM with (tool definition) => return tool call request => tools execu
         "name": "get_weather",
         "description": "Get current weather for a location",
         "parameters": {
-          // JSON Schema object
           "type": "object",
           "properties": {
             "location": {
@@ -39,45 +50,61 @@ request to LLM with (tool definition) => return tool call request => tools execu
     },
     {
       "role": "user",
-      "content": "What's the weather in San Francisco?" 
+      "content": "What's the weather in San Francisco?"
     }
-  ],
+  ]
 }
+```
 
-2. Model Returns Tool Call Requests
-- {
+## 2. Model Returns Tool Call Request
+
+```json
+{
   "role": "assistant",
-  "tool_calls": [{
-    "id": "call_abc123",
-    "type": "function",
-    "function": {
-      "name": "get_weather",
-      "arguments": "{\"location\": \"San Francisco, CA\", \"unit\": \"fahrenheit\"}"
+  "tool_calls": [
+    {
+      "id": "call_abc123",
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "arguments": "{\"location\": \"San Francisco, CA\", \"unit\": \"fahrenheit\"}"
+      }
     }
-  }]
+  ]
 }
+```
 
-3. Tool Execution and Results
-- {
+## 3. Tool Execution and Results
+
+```json
+{
   "role": "tool",
-  # must match the `id` from the assistant's `tool_calls`
   "tool_call_id": "call_abc123",
   "name": "get_weather",
   "content": "{\"temperature\": 72, \"condition\": \"sunny\", \"unit\": \"fahrenheit\"}"
 }
+```
 
-4. Model Evaluates Results and Decides Next Steps.
-- and return json output.
+> `tool_call_id` must match the `id` from the assistant's `tool_calls`.
 
-## Model that support tool execution
-- openai/gpt-oss-20b
-- openai/gpt-oss-120b
-- qwen/qwen3.6-27b
+## 4. Model Evaluates Result
 
-## We can use tools in 3 ways
-- built in tools of that LLM
-- Remote tool calling MCP(Model Context Protocol) - Allow to connect with external tools
-- Local tool Calling (function calling) - you can implemnt of your own tools or function. help in custom buisness logic 
+Model tool result ko evaluate karke decide karta hai next steps kya honge, aur final JSON output return karta hai.
 
-## parallel tool use 
-- many model support parallel tool use, where multiple tool can be called simultaneously
+## Models that Support Tool Execution
+
+- `openai/gpt-oss-20b`
+- `openai/gpt-oss-120b`
+- `qwen/qwen3.6-27b` *(naam double-check kar lena, ye version thoda unusual lag raha hai)*
+
+## Ways to Use Tools
+
+| Method | Description |
+|---|---|
+| **Built-in tools** | LLM provider ke apne pre-built tools |
+| **Remote tool calling (MCP)** | Model Context Protocol — external tools/servers se connect karne ka standard |
+| **Local tool calling (function calling)** | Apne khud ke custom tools/functions implement karna — custom business logic ke liye |
+
+## Parallel Tool Use
+
+Kai models parallel tool use support karte hain — jaha ek hi request me multiple tools simultaneously call ho sakte hain (sequential round-trips ki jagah).
