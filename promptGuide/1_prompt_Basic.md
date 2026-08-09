@@ -1,32 +1,37 @@
 # Prompt Building Blocks
-Most high quality prompt basically contains five elements
 
-Element	What it does
+Most high quality prompts basically contain five elements:
 
-1. Role --	Sets persona or expertise ("You are a data analyst…")
-2. Instructions -- 	Bullet-proof list of required actions
-3. Context	-- Background knowledge or reference material
-4. Input -- 	The data or question to transform
-5. Expected Output	-- Schema or miniature example to lock formatting 
+| # | Element | What it does |
+|---|---|---|
+| 1 | **Role** | Sets persona or expertise ("You are a data analyst…") |
+| 2 | **Instructions** | Bullet-proof list of required actions |
+| 3 | **Context** | Background knowledge or reference material |
+| 4 | **Input** | The data or question to transform |
+| 5 | **Expected Output** | Schema or miniature example to lock formatting |
 
-# prompt
+---
 
+## Prompt
 
-- System
-You are a data-extraction bot. Return **ONLY** valid JSON.
+### System
+```
+You are a data-extraction bot. Return ONLY valid JSON.
+```
 
-- Instructions
+### Instructions
 Return only JSON with keys:
-- name (string)
-- street (string)
-- city (string)
-- postcode (string)
+- `name` (string)
+- `street` (string)
+- `city` (string)
+- `postcode` (string)
 
-- Context
-"Ship-to" or "Deliver to" often precedes the address.
-Postcodes may include letters (e.g., SW1A 1AA).
+### Context
+- "Ship-to" or "Deliver to" often precedes the address.
+- Postcodes may include letters (e.g., `SW1A 1AA`).
 
-- Input
+### Input
+```
 Subject: Shipping Request - Order #12345
 
 Hi Shipping Team,
@@ -45,6 +50,9 @@ Items:
 
 Thanks,
 Sales Team
+```
 
--  Example Output
+### Example Output
+```json
 {"name":"John Doe","street":"456 Pine Street","city":"San Francisco","postcode":"94105"}
+```
