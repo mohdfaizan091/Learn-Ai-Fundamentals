@@ -1,6 +1,6 @@
 # Tools in LLM
 
-Tools LLM ko external resources ke sath interact karne dete hain.
+Tools in LLM allow you to interact with external resources.
 
 ## Workflow
 
@@ -89,22 +89,22 @@ Sample request body with tool definitions and messages:
 
 ## 4. Model Evaluates Result
 
-Model tool result ko evaluate karke decide karta hai next steps kya honge, aur final JSON output return karta hai.
+Model evaluates the results, decides the next steps, and returns a JSON output.
 
 ## Models that Support Tool Execution
 
-- `openai/gpt-oss-20b`
-- `openai/gpt-oss-120b`
-- `qwen/qwen3.6-27b` *(naam double-check kar lena, ye version thoda unusual lag raha hai)*
+* `openai/gpt-oss-20b`
+* `openai/gpt-oss-120b`
+* `qwen/qwen3.6-27b`
 
 ## Ways to Use Tools
 
-| Method | Description |
-|---|---|
-| **Built-in tools** | LLM provider ke apne pre-built tools |
-| **Remote tool calling (MCP)** | Model Context Protocol — external tools/servers se connect karne ka standard |
-| **Local tool calling (function calling)** | Apne khud ke custom tools/functions implement karna — custom business logic ke liye |
+| Method                                    | Description                                                                  |
+| ----------------------------------------- | ---------------------------------------------------------------------------- |
+| **Built-in tools**                        | LLM provider's own pre-built tools                                           |
+| **Remote tool calling (MCP)**             | Model Context Protocol — a standard for connecting to external tools/servers |
+| **Local tool calling (function calling)** | Implementing your own custom tools/functions — for custom business logic     |
 
 ## Parallel Tool Use
 
-Kai models parallel tool use support karte hain — jaha ek hi request me multiple tools simultaneously call ho sakte hain (sequential round-trips ki jagah).
+* Many models support parallel tool use, where multiple tools can be called simultaneously
